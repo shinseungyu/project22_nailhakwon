@@ -173,8 +173,7 @@ export default function RootLayout({
         <meta itemProp="name" content={TITLE} />
         <meta itemProp="description" content={DESC} />
         <meta itemProp="image" content="https://nailhakwon.com/thumb.webp" />
-        <meta name="naver-site-verification" content="89526f8a6ecae4298dcb29200f67dbc70c6c1b48" />
-        <meta name="naver-site-verification" content="593987aee24a5955b82f1db88f052255eb167d93" />
+        <meta name="naver-site-verification" content="b054b0f3c28975e8a1c5f89fdb5bc55a5c9ee089" />
         <Script
           async
           src="https://www.googletagmanager.com/gtag/js?id=G-HQ7J0K4PKJ"
