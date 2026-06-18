@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { ChevronLeft, ChevronRight, Zap, ShieldCheck, Award } from "lucide-react";
 import styles from "../page.module.css";
+import HeroIntegratedForm from "@/components/HeroIntegratedForm";
 
 export default function FundingPage() {
   return (
@@ -21,6 +22,14 @@ export default function FundingPage() {
           <h1 className={styles.title}>저희 학원 자체 장학 지원 안내</h1>
           <p className={styles.subtitle}>국비지원보다 쉽고, 혜택은 더 강력하게</p>
         </header>
+
+        {/* Integrated Form */}
+        <section style={{ marginBottom: 40 }}>
+          <div className="relative w-full">
+            <div className="absolute -inset-4 bg-brand/20 blur-3xl rounded-full animate-pulse opacity-50 pointer-events-none" />
+            <HeroIntegratedForm />
+          </div>
+        </section>
 
         {/* Hero Banner */}
         <div style={{
