@@ -1,134 +1,175 @@
-import posts from '@/data/posts.json'
-import Link from 'next/link'
-import type { Metadata } from 'next'
-import { ChevronLeft, Calendar, Tag } from 'lucide-react'
+import type { Metadata } from 'next';
+import Link from 'next/link';
+import { ChevronLeft } from 'lucide-react';
+import posts from '@/data/posts.json';
+import { SITE_NAME, SITE_URL, OG_IMAGE } from '@/lib/site';
+
+type Post = {
+  id: number;
+  title: string;
+  date: string;
+  updated?: string;
+  category: string;
+  summary: string;
+  content: string;
+  tags: string[];
+};
+
+const allPosts = (posts as Post[]).slice().sort((a, b) => b.date.localeCompare(a.date));
 
 export const metadata: Metadata = {
-  title: '네일국가자격증 합격후기 | 수강생 취업 성공 사례 모음',
-  description: '실제 수강생들의 네일국가자격증 원패스 합격 후기, 강남 네일샵 취업 성공 사례, 네일아트 팁까지. 2026년 최신 후기 모음.',
+  title: '네일학원 정보글 — 자격증·국비지원·학원비 총정리',
+  description: '네일 자격증 준비, 국비지원 신청, 학원비 비교, 취업 준비까지 주제별로 정리한 정보글 모음입니다.',
   alternates: { canonical: '/board' },
   openGraph: {
-    title: '네일국가자격증 합격후기 | 수강생 취업 성공 사례 모음',
-    description: '실제 수강생 네일국가자격증 합격 후기·강남 네일샵 취업 사례·네일아트 팁 2026 최신 모음.',
-    url: '/board',
+    title: '네일학원 정보글 — 자격증·국비지원·학원비 총정리',
+    description: '네일 자격증·국비지원·학원비·취업 정보를 주제별로 정리했습니다.',
+    url: `${SITE_URL}/board`,
+    siteName: SITE_NAME,
+    locale: 'ko_KR',
     type: 'website',
+    images: [{ url: OG_IMAGE, width: 1200, height: 630, alt: '네일학원 정보글' }],
   },
-}
+};
 
-interface Post {
-  id: number
-  title: string
-  date: string
-  category: string
-  summary: string
-  content: string
-  tags: string[]
-}
+export default function BoardPage() {
+  /**
+   * 목록 스키마(ItemList·CollectionPage)는 이 페이지에만 둔다.
+   * board/layout.tsx 에 두면 /board/[id] 에도 상속돼서
+   * 개별 글이 Article 과 CollectionPage 를 동시에 선언하게 된다.
+   */
+  const schemas = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      '@id': `${SITE_URL}/board#collection`,
+      url: `${SITE_URL}/board`,
+      name: '네일학원 정보글',
+      description: '네일 자격증·국비지원·학원비·취업 정보 모음',
+      inLanguage: 'ko-KR',
+      isPartOf: { '@id': `${SITE_URL}/#website` },
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'ItemList',
+      '@id': `${SITE_URL}/board#itemlist`,
+      itemListElement: allPosts.map((p, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        name: p.title,
+        url: `${SITE_URL}/board/${p.id}`,
+      })),
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      '@id': `${SITE_URL}/board#breadcrumb`,
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: '홈', item: `${SITE_URL}/` },
+        { '@type': 'ListItem', position: 2, name: '정보글', item: `${SITE_URL}/board` },
+      ],
+    },
+  ];
 
-interface Props {
-  searchParams: Promise<{ id?: string }>
-}
+  return (
+    <main style={{ maxWidth: 1000, margin: '0 auto', padding: '48px 1.25rem 100px' }}>
+      {schemas.map((s, i) => (
+        <script
+          key={`ld-${i}`}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(s) }}
+        />
+      ))}
 
-export default async function BoardPage({ searchParams }: Props) {
-  const { id } = await searchParams
-  const allPosts: Post[] = posts as Post[]
-
-  // ?id=1 이면 해당 글 상세 보기
-  if (id) {
-    const post = allPosts.find((p) => p.id === Number(id))
-
-    if (!post) {
-      return (
-        <main style={{ maxWidth: '800px', margin: '0 auto', padding: '40px 20px', fontFamily: 'sans-serif' }}>
-          <p style={{ color: '#888' }}>게시글을 찾을 수 없습니다.</p>
-          <Link href="/board" style={{ color: '#f43f5e' }}>← 목록으로</Link>
-        </main>
-      )
-    }
-
-    return (
-      <main style={{ maxWidth: '800px', margin: '0 auto', padding: '40px 20px', fontFamily: 'sans-serif', color: '#1c1917' }}>
-        {/* 뒤로가기 */}
-        <Link href="/board" style={{ fontSize: '14px', color: '#f43f5e', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '4px', marginBottom: '24px', fontWeight: '600' }}>
-          <ChevronLeft size={16} /> 목록으로 돌아가기
+      <nav aria-label="브레드크럼" style={{ marginBottom: 24 }}>
+        <Link
+          href="/"
+          style={{ display: 'inline-flex', alignItems: 'center', gap: 6, color: 'var(--text-muted)', textDecoration: 'none', fontSize: 13, fontWeight: 700 }}
+        >
+          <ChevronLeft size={15} /> 홈으로
         </Link>
+      </nav>
 
-        {/* 글 헤더 */}
-        <article>
-          <div style={{ marginBottom: '12px' }}>
-            <span style={{ fontSize: '12px', backgroundColor: '#ffe4e6', color: '#f43f5e', padding: '4px 12px', borderRadius: '999px', fontWeight: '700' }}>
+      <header style={{ marginBottom: 44 }}>
+        <h1
+          style={{
+            fontSize: 'clamp(27px, 5vw, 36px)',
+            fontWeight: 900,
+            letterSpacing: '-0.03em',
+            lineHeight: 1.25,
+            margin: '0 0 14px',
+            color: 'var(--text-primary)',
+          }}
+        >
+          네일학원 정보글
+        </h1>
+        <p style={{ color: 'var(--text-secondary)', fontSize: 16.5, lineHeight: 1.8, maxWidth: 640, margin: 0 }}>
+          네일 자격증 준비부터 국비지원 신청, 학원비 비교, 취업 준비까지 주제별로 정리했습니다.
+          모두 학원 선택 전에 확인해 두면 좋은 내용입니다.
+        </p>
+      </header>
+
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+          gap: 18,
+        }}
+      >
+        {allPosts.map((post) => (
+          <Link
+            key={post.id}
+            href={`/board/${post.id}`}
+            style={{
+              textDecoration: 'none',
+              display: 'flex',
+              flexDirection: 'column',
+              background: '#fff',
+              border: '1px solid #f1f0ef',
+              borderRadius: 18,
+              padding: '24px 24px 22px',
+            }}
+          >
+            <span
+              style={{
+                color: 'var(--primary)',
+                fontSize: 11,
+                fontWeight: 900,
+                letterSpacing: '0.08em',
+                marginBottom: 10,
+              }}
+            >
               {post.category}
             </span>
-          </div>
-          <h1 style={{ fontSize: '2rem', fontWeight: '800', lineHeight: '1.4', marginBottom: '16px', letterSpacing: '-0.02em' }}>
-            {post.title}
-          </h1>
-          <div style={{ display: 'flex', gap: '16px', fontSize: '13px', color: '#a8a29e', marginBottom: '32px', borderBottom: '1px solid #f5f5f4', paddingBottom: '16px' }}>
-            <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><Calendar size={14} /> {post.date}</span>
-            <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><Tag size={14} /> {post.tags.join(', ')}</span>
-          </div>
-
-          {/* 본문 - \n 을 줄바꿈으로 렌더링 */}
-          <div style={{ lineHeight: '1.9', fontSize: '16px', color: '#444' }}>
-            {post.content.split('\n').map((line, i) => (
-              line.trim() === '' 
-                ? <br key={i} /> 
-                : <p key={i} style={{ margin: '0 0 12px 0' }}>{line}</p>
-            ))}
-          </div>
-        </article>
-
-        {/* 다른 글 목록 */}
-        <section style={{ marginTop: '60px', paddingTop: '32px', borderTop: '1px solid #f5f5f4' }}>
-          <h2 style={{ fontSize: '18px', fontWeight: '800', marginBottom: '20px', color: '#1c1917' }}>다른 소식 보기</h2>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '12px' }}>
-            {allPosts.filter(p => p.id !== post.id).map(p => (
-              <Link key={p.id} href={`/board?id=${p.id}`} style={{ textDecoration: 'none', padding: '16px 20px', background: '#fffcfc', borderRadius: '12px', border: '1px solid #fff1f2', display: 'block', transition: 'all 0.2s' }}>
-                <span style={{ fontSize: '12px', color: '#f43f5e', fontWeight: '700' }}>{p.category}</span>
-                <p style={{ margin: '4px 0 0', fontSize: '15px', color: '#1c1917', fontWeight: '600' }}>{p.title}</p>
-              </Link>
-            ))}
-          </div>
-        </section>
-
-
-      </main>
-    )
-  }
-
-  // id 없으면 목록 페이지
-  return (
-    <main style={{ maxWidth: '900px', margin: '0 auto', padding: '60px 20px', fontFamily: 'sans-serif', color: '#1c1917' }}>
-      <Link href="/" style={{ fontSize: '14px', color: '#f43f5e', textDecoration: 'none', marginBottom: '32px', display: 'inline-flex', alignItems: 'center', gap: '4px', fontWeight: '600' }}>
-        <ChevronLeft size={16} /> 홈으로 돌아가기
-      </Link>
-
-      <div style={{ marginBottom: '48px' }}>
-        <h1 style={{ fontSize: '2.5rem', fontWeight: '800', marginBottom: '12px', letterSpacing: '-0.02em' }}>네일아트학원 게시판</h1>
-        <p style={{ color: '#57534e', fontSize: '16px' }}>네일아트학원 아카데미의 수강생 이야기와 최신 소식을 전해드립니다.</p>
-      </div>
-
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(100%, 1fr))', gap: '20px' }}>
-        {allPosts.map((post) => (
-          <Link key={post.id} href={`/board?id=${post.id}`} style={{ textDecoration: 'none', display: 'block', padding: '24px', background: '#fff', border: '1px solid #f5f5f4', borderRadius: '16px', transition: 'all 0.2s', boxShadow: '0 4px 12px rgba(244,63,94,0.03)' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
-              <span style={{ fontSize: '12px', backgroundColor: '#ffe4e6', color: '#f43f5e', padding: '4px 12px', borderRadius: '999px', fontWeight: '700' }}>
-                {post.category}
-              </span>
-              <span style={{ fontSize: '12px', color: '#a8a29e' }}>{post.date}</span>
-            </div>
-            <h2 style={{ margin: '0 0 10px', fontSize: '18px', fontWeight: '800', color: '#1c1917' }}>{post.title}</h2>
-            <p style={{ margin: 0, fontSize: '15px', color: '#57534e', lineHeight: '1.6' }}>{post.summary}</p>
-            <div style={{ marginTop: '16px', display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-              {post.tags.map(tag => (
-                <span key={tag} style={{ fontSize: '12px', color: '#78716c', background: '#f5f5f4', padding: '4px 10px', borderRadius: '8px' }}>#{tag}</span>
-              ))}
-            </div>
+            <h2
+              style={{
+                fontSize: 17,
+                fontWeight: 800,
+                lineHeight: 1.5,
+                letterSpacing: '-0.02em',
+                color: 'var(--text-primary)',
+                margin: '0 0 10px',
+              }}
+            >
+              {post.title}
+            </h2>
+            <p
+              style={{
+                fontSize: 14,
+                lineHeight: 1.75,
+                color: 'var(--text-secondary)',
+                margin: '0 0 16px',
+                flexGrow: 1,
+              }}
+            >
+              {post.summary}
+            </p>
+            <time dateTime={post.date} style={{ fontSize: 12.5, color: 'var(--text-muted)' }}>
+              {post.date}
+            </time>
           </Link>
         ))}
       </div>
-
-
     </main>
-  )
+  );
 }

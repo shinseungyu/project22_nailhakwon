@@ -1,16 +1,19 @@
 import type { Metadata } from 'next'
+import { SITE_NAME, UPDATED } from '@/lib/site'
 
+/** ⚠️ 메타데이터가 project5(관세계산기) 템플릿 그대로였다. 이 사이트 것으로 교체. */
 export const metadata: Metadata = {
-  title: '쿠키 정책 | 관세계산기',
-  description: '관세계산기 서비스의 쿠키 정책입니다.',
+  title: `쿠키 정책 | ${SITE_NAME}`,
+  description: '본 사이트가 사용하는 쿠키의 종류와 목적, 거부 방법을 안내합니다.',
   alternates: { canonical: '/cookie-policy' },
+  robots: { index: false, follow: true },
 }
 
 export default function CookiePolicyPage() {
   return (
     <main style={{ maxWidth: '800px', margin: '0 auto', padding: '40px 20px', fontFamily: 'sans-serif', color: '#333', lineHeight: '1.8' }}>
       <h1 style={{ fontSize: '2rem', fontWeight: 'bold', marginBottom: '8px' }}>쿠키 정책</h1>
-      <p style={{ color: '#888', marginBottom: '32px' }}>최종 업데이트: 2026년 3월 8일</p>
+      <p style={{ color: '#888', marginBottom: '32px' }}>최종 업데이트: {UPDATED}</p>
 
       <section style={{ marginBottom: '32px' }}>
         <h2 style={{ fontSize: '1.3rem', fontWeight: 'bold', marginBottom: '12px', borderBottom: '2px solid #eee', paddingBottom: '8px' }}>1. 쿠키란 무엇인가요?</h2>

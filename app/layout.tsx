@@ -1,28 +1,43 @@
 import type { Metadata } from 'next'
-import Script from 'next/script';
+import Link from 'next/link'
+import Script from 'next/script'
 import { Geist } from 'next/font/google'
 import './globals.css'
 import '../styles/globals.css'
 import Footer from '@/components/Footer'
+import {
+  SITE_NAME,
+  SITE_SHORT,
+  SITE_URL,
+  OG_IMAGE,
+  ADSENSE_PUB,
+  GA_ID,
+  NAVER_VERIFICATION,
+  NAV,
+} from '@/lib/site'
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-geist" });
 
-const SITE_NAME = '네일아트 학원비 비교사이트';
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://nailhakwon.com';
-const TITLE = '네일아트 학원비 비교사이트 | 네일 국비지원·학원비·취업 총정리 2026';
-const DESC = '네일아트 학원비 비교사이트. 네일 국비지원·학원비·취업까지 2026년 기준으로 한눈에 총정리합니다. 무료 상담으로 맞춤 정보를 받아보세요.';
+const TITLE = '네일아트 학원비 비교 | 국비지원·자격증·해외취업 2026';
+const DESC = '네일학원 학원비를 총액 기준으로 비교하고 국비지원·자격증·해외취업 정보를 2026년 기준으로 정리했습니다.';
 
 export const metadata: Metadata = {
   title: {
     default: TITLE,
-    template: `%s | ${SITE_NAME}`,
+    // 네이버 서치어드바이저 권장(40자)을 맞추려고 접미사는 짧은 이름을 쓴다
+    template: `%s | ${SITE_SHORT}`,
   },
   description: DESC,
   metadataBase: new URL(SITE_URL),
   alternates: {
     canonical: '/',
   },
-  keywords: ['네일아트 학원비 비교사이트', '네일아트 학원비용', '네일 학원비', '네일학원비 비교', '네일학원 학원비', '네일아트 학원비 얼마', '네일학원비용 비교', '네일 국비지원', '내일배움카드 네일학원', '네일아트 국비지원', '네일리스트 해외취업', '네일 워킹홀리데이', '호주 네일 취업', '캐나다 네일 취업', '일본 네일 취업', '네일아트 국가자격증', '네일 취업 학원', '네일학원비용', '네일아트학원비', '네일샵 창업', '네일리스트 자격증', '미용사 네일 자격증', '네일아트 배우기'],
+  /**
+   * keywords 는 검색 순위에 쓰이지 않는다. 이전에는 23개를 나열해 두었는데
+   * 주제만 흐려지므로 이 페이지의 핵심 키워드만 남긴다.
+   * 개별 페이지는 각자 자기 키워드를 metadata 에서 선언한다.
+   */
+  keywords: ['네일학원비', '네일학원 비교', '네일 국비지원', '네일 국가자격증', '네일리스트 해외취업'],
   openGraph: {
     title: TITLE,
     description: DESC,
@@ -32,18 +47,18 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: 'https://nailhakwon.com/thumb.webp',
+        url: OG_IMAGE,
         width: 1200,
         height: 630,
-        alt: '네일학원 - 네일아트 학원비용 비교사이트',
+        alt: '네일학원 학원비 비교사이트',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: '네일아트 학원비 비교사이트 | 네일 국비지원·학원비·취업 총정리 2026',
-    description: '네일 국비지원·학원비·취업까지 2026년 기준으로 한눈에 총정리합니다.',
-    images: ['https://nailhakwon.com/thumb.webp'],
+    title: TITLE,
+    description: DESC,
+    images: [OG_IMAGE],
   },
   authors: [{ name: SITE_NAME }],
   publisher: SITE_NAME,
@@ -54,27 +69,16 @@ export const metadata: Metadata = {
     address: false,
     email: false,
   },
-  verification: {},
+  verification: {
+    other: { 'naver-site-verification': NAVER_VERIFICATION },
+  },
   icons: {
     icon: '/favicon.png',
     shortcut: '/favicon.png',
     apple: '/favicon.png',
   },
   other: {
-    'google-adsense-account': 'ca-pub-5378247298190063',
-    'NaverBot': 'all',
-    'Yeti': 'all',
-    'googlebot': 'all',
-    'subject': '네일아트 학원비 비교사이트',
-    'publisher': SITE_NAME,
-    'author': SITE_NAME,
-    'location': 'South Korea',
-    'distribution': 'global',
-    'rating': 'general',
-    'format-detection': 'telephone=no, date=no, address=no, email=no',
-    'itemprop:name': TITLE,
-    'itemprop:description': DESC,
-    'itemprop:image': 'https://nailhakwon.com/thumb.webp',
+    'google-adsense-account': ADSENSE_PUB,
   },
 }
 
@@ -83,80 +87,40 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://nailhakwon.com';
-
+  /**
+   * 루트 레이아웃에는 "사이트 전체에 해당하는" 노드만 둔다.
+   *
+   * 이전에는 여기에 두 가지가 더 있었고 둘 다 문제였다.
+   *  ① 홈 전용 WebPage 노드 — url 이 홈으로 고정돼 있어서 모든 하위 페이지가
+   *     "나는 홈페이지다" 라고 선언하고 있었다.
+   *  ② FAQPage 5개 — 화면에 그 Q&A 가 없는 페이지에까지 전부 붙었고,
+   *     내용도 '저희 학원에서는 1:1 진도표를 운영합니다' 처럼 이 사이트가
+   *     실제로 하지 않는 일을 서술하고 있었다.
+   *     FAQ 스키마는 그 화면에 실제로 보이는 Q&A 로만 만든다 → /qna 로 옮김.
+   */
   const jsonLd = {
     '@context': 'https://schema.org',
     '@graph': [
       {
         '@type': 'WebSite',
-        '@id': `${siteUrl}/#website`,
-        url: `${siteUrl}/`,
-        name: '네일아트 학원비 비교사이트',
+        '@id': `${SITE_URL}/#website`,
+        url: `${SITE_URL}/`,
+        name: SITE_NAME,
+        description: DESC,
         inLanguage: 'ko-KR',
+        publisher: { '@id': `${SITE_URL}/#organization` },
       },
       {
         '@type': 'Organization',
-        '@id': `${siteUrl}/#organization`,
-        name: '네일아트 학원비 비교사이트',
-        url: `${siteUrl}/`,
-        description: '네일아트 학원비용·국비지원·해외취업 정보를 비교 제공하는 네일 전문 정보 사이트입니다.',
-      },
-      {
-        '@type': 'WebPage',
-        '@id': `${siteUrl}/#webpage`,
-        url: `${siteUrl}/`,
-        name: '네일아트 학원비 비교사이트 | 네일 국비지원·학원비·취업 총정리 2026',
-        inLanguage: 'ko-KR',
-        description: '네일아트 학원비용·내일배움카드 국비지원·네일리스트 해외취업·워킹홀리데이까지 2026년 기준으로 한눈에 비교.',
-        isPartOf: { '@id': `${siteUrl}/#website` },
-        about: ['네일아트 학원비용', '네일학원비 비교', '네일 국비지원', '내일배움카드 네일학원', '네일리스트 해외취업', '네일 워킹홀리데이'],
-      },
-      {
-        '@type': 'FAQPage',
-        '@id': `${siteUrl}/#faq`,
-        mainEntity: [
-          {
-            '@type': 'Question',
-            name: '네일아트 국가자격증 취득까지 기간이 얼마나 걸리나요?',
-            acceptedAnswer: {
-              '@type': 'Answer',
-              text: '일반적으로 주 3회 수업 기준으로 평균 3개월(약 12주) 정도 소요됩니다. 저희 네일아트학원에서는 수강생 개개인의 습득 속도에 맞춘 1:1 진도표를 운영하여 단기간 합격을 지원합니다.',
-            },
-          },
-          {
-            '@type': 'Question',
-            name: '직장인이나 학생도 수강할 수 있는 야간/주말 시간표가 있나요?',
-            acceptedAnswer: {
-              '@type': 'Answer',
-              text: '네! 직장인과 학생분들을 위해 야간반과 주말반을 운영하고 있습니다. 본인의 스케줄에 맞춰 유동적으로 수업 시간을 조율하실 수 있어 업무와 병행이 가능합니다.',
-            },
-          },
-          {
-            '@type': 'Question',
-            name: '네일아트 학원비 외에 추가되는 재료비는 별도인가요?',
-            acceptedAnswer: {
-              '@type': 'Answer',
-              text: '수강생분들의 초기 비용 부담을 최소화하기 위해 등록 시 전문가용 재료 풀세트를 무상으로 제공해 드립니다. 별도 재료비 걱정 없이 시작하실 수 있습니다.',
-            },
-          },
-          {
-            '@type': 'Question',
-            name: '내일배움카드(국비지원)로 수업을 들을 수 있나요?',
-            acceptedAnswer: {
-              '@type': 'Answer',
-              text: '저희 학원은 내일배움카드로 직접 결제하는 국비지원 기관은 아닙니다. 다만 내일배움카드 소지자는 카드 사용 없이도 별도 할인 혜택을 즉시 받으실 수 있으며, 자체 장학 지원으로 국비 수준 이상의 혜택을 모든 수강생에게 제공합니다.',
-            },
-          },
-          {
-            '@type': 'Question',
-            name: '자격증 취득 후 호주·캐나다 워킹홀리데이로 네일 취업이 가능한가요?',
-            acceptedAnswer: {
-              '@type': 'Answer',
-              text: '네, 가능합니다. 한국 미용사(네일) 국가자격증을 영문 공증하면 호주·캐나다·일본 현지 네일샵 구직 시 핵심 스펙이 됩니다. 특히 호주 워킹홀리데이는 시급이 국내보다 높아 네일리스트 해외취업지로 인기가 높습니다.',
-            },
-          },
-        ],
+        '@id': `${SITE_URL}/#organization`,
+        name: SITE_NAME,
+        url: `${SITE_URL}/`,
+        description:
+          '네일 학원비·국비지원·자격증·해외취업 정보를 비교해 제공하는 정보 사이트입니다.',
+        logo: {
+          '@type': 'ImageObject',
+          url: `${SITE_URL}/favicon.png`,
+        },
       },
     ],
   };
@@ -164,19 +128,20 @@ export default function RootLayout({
   return (
     <html lang="ko" suppressHydrationWarning>
       <head>
-        <Script
-          id="json-ld"
+        {/*
+          JSON-LD 는 next/script 로 넣으면 서버 HTML 에 self.__next_s 페이로드로만 나가고
+          실제 <script type="application/ld+json"> 태그는 하이드레이션 이후에 생긴다.
+          strategy="beforeInteractive" 여도 마찬가지다. JS 를 렌더하지 않는 크롤러와
+          스키마 검증 도구가 못 읽으므로 일반 script 로 렌더한다.
+          반대로 외부 스크립트(gtag·adsbygoogle)는 실제로 로드돼야 하므로 next/script 가 맞다.
+        */}
+        <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-          strategy="beforeInteractive"
         />
-        <meta itemProp="name" content={TITLE} />
-        <meta itemProp="description" content={DESC} />
-        <meta itemProp="image" content="https://nailhakwon.com/thumb.webp" />
-        <meta name="naver-site-verification" content="b054b0f3c28975e8a1c5f89fdb5bc55a5c9ee089" />
         <Script
           async
-          src="https://www.googletagmanager.com/gtag/js?id=G-HQ7J0K4PKJ"
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
           strategy="afterInteractive"
         />
         <Script id="gtag-init" strategy="afterInteractive">
@@ -184,12 +149,12 @@ export default function RootLayout({
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-HQ7J0K4PKJ');
+            gtag('config', '${GA_ID}');
           `}
         </Script>
         <Script
           async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5378247298190063"
+          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_PUB}`}
           crossOrigin="anonymous"
           strategy="afterInteractive"
         />
@@ -210,6 +175,7 @@ export default function RootLayout({
               height: 4rem;
               align-items: center;
               justify-content: space-between;
+              gap: 1rem;
             }
             .nav-logo {
               font-weight: bold;
@@ -218,10 +184,16 @@ export default function RootLayout({
               text-decoration: none;
               display: flex;
               align-items: center;
+              flex-shrink: 0;
             }
             .nav-links {
               display: flex;
-              gap: 2rem;
+              gap: 1.5rem;
+              overflow-x: auto;
+              scrollbar-width: none;
+            }
+            .nav-links::-webkit-scrollbar {
+              display: none;
             }
             .nav-link {
               text-decoration: none;
@@ -229,13 +201,17 @@ export default function RootLayout({
               font-size: 0.875rem;
               font-weight: 500;
               transition: color 0.2s;
+              white-space: nowrap;
             }
             .nav-link:hover {
               color: black;
             }
-            @media (max-width: 640px) {
+            @media (max-width: 760px) {
+              .nav-logo {
+                font-size: 0.95rem;
+              }
               .nav-links {
-                gap: 0.3rem;
+                gap: 0.85rem;
               }
               .nav-link {
                 font-size: 0.8rem;
@@ -247,15 +223,15 @@ export default function RootLayout({
       <body className={geist.variable}>
         <nav className="nav-container">
           <div className="nav-content">
-            <a href="/" className="nav-logo" style={{ color: "var(--primary)" }}>
-              네일아트 학원비용 비교
-            </a>
+            <Link href="/" className="nav-logo" style={{ color: "var(--primary)" }}>
+              네일아트 학원비 비교
+            </Link>
             <div className="nav-links">
-              <a href="/" className="nav-link">홈</a>
-              <a href="/employment" className="nav-link">해외취업</a>
-              <a href="/funding" className="nav-link">국비지원</a>
-              <a href="/qna" className="nav-link">FAQ</a>
-              <a href="/board" className="nav-link">게시판</a>
+              {NAV.map((item) => (
+                <Link key={item.href} href={item.href} className="nav-link">
+                  {item.label}
+                </Link>
+              ))}
             </div>
           </div>
         </nav>

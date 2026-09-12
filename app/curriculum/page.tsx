@@ -154,7 +154,7 @@ export default function CurriculumPage() {
                 <p style={{ fontSize: 12, color: "var(--text-secondary)", marginBottom: 6, fontWeight: 600 }}>{row.label}</p>
                 <div style={{ display: "flex", justifyContent: "space-between", fontSize: 13 }}>
                   <span style={{ color: "#888" }}>국비지원: {row.national}</span>
-                  <span style={{ color: "var(--primary)", fontWeight: 700 }}>저희: {row.us}</span>
+                  <span style={{ color: "var(--primary)", fontWeight: 700 }}>권장: {row.us}</span>
                 </div>
               </div>
             ))}

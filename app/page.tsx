@@ -48,7 +48,7 @@ export default function Page() {
           <div style={{ textAlign: "center", marginBottom: 40 }}>
             <h2 style={{ fontSize: 28, fontWeight: 800, color: "var(--text-primary)", marginBottom: 16 }}>네일아트 학원비 비교사이트가 추천하는 이유</h2>
             <p style={{ color: "var(--text-secondary)", fontSize: 15, lineHeight: 1.6, maxWidth: 680, margin: "0 auto" }}>
-              네일아트 학원비용을 비교할 때 단순히 가격만 보면 안 됩니다. 교육의 질, 재료 수준, 수료 후 지원까지 종합적으로 따져봐야 진짜 합리적인 선택을 할 수 있습니다. 저희 학원이 수많은 수강생에게 선택받는 데는 분명한 이유가 있습니다.
+              네일아트 학원비용을 비교할 때 수강료만 보면 안 됩니다. 재료비와 응시료까지 포함한 총액, 총 수업 시간, 연습실 이용 조건까지 함께 따져야 실제로 합리적인 선택이 됩니다.
             </p>
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 24 }}>
@@ -140,9 +140,9 @@ export default function Page() {
         <section style={{ marginBottom: 60 }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: 16 }}>
             <div>
-              <h2 style={{ fontSize: 28, fontWeight: 800, marginBottom: 10 }}>수강후기 & 소식</h2>
+              <h2 style={{ fontSize: 28, fontWeight: 800, marginBottom: 10 }}>네일학원 정보글</h2>
               <p style={{ color: "var(--text-secondary)", fontSize: 15, lineHeight: 1.6 }}>
-                실제 수강생들이 직접 작성한 후기와 학원 소식을 확인하세요. 네일아트 학원비 비교사이트를 통해 등록한 뒤 자격증 취득, 취업 성공, 해외 워킹홀리데이까지 달성한 생생한 이야기를 담았습니다.
+                학원을 정하기 전에 확인해 두면 좋은 내용을 주제별로 정리했습니다. 자격증 준비 순서, 국비지원 신청 절차, 학원비를 총액으로 비교하는 법, 취업 준비까지 다룹니다.
               </p>
             </div>
             <Link href="/board" style={{ color: "var(--primary)", textDecoration: "none", fontSize: 14, fontWeight: 600, display: "flex", alignItems: "center", gap: 4, flexShrink: 0, marginLeft: 24 }}>
@@ -151,7 +151,7 @@ export default function Page() {
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 20 }}>
             {postsData.slice(0, 3).map((post: any) => (
-              <Link key={post.id} href={`/board?id=${post.id}`} className={styles.card} style={{ textDecoration: "none", padding: 24 }}>
+              <Link key={post.id} href={`/board/${post.id}`} className={styles.card} style={{ textDecoration: "none", padding: 24 }}>
                 <span style={{ fontSize: 12, color: "var(--primary)", fontWeight: 700, background: "var(--primary-light)", padding: "2px 8px", borderRadius: 4, marginBottom: 12, display: "inline-block" }}>
                   {post.category}
                 </span>
@@ -323,7 +323,7 @@ export default function Page() {
               { q: "네일아트 국가자격증 취득까지 기간이 얼마나 걸리나요?", a: "일반적으로 주 3회 수업 기준으로 **평균 3개월(약 12주)** 정도 소요됩니다. 수강생 개개인의 습득 속도에 맞춘 1:1 진도표를 운영하여, 초보자분들도 단기간에 합격할 수 있도록 밀착 지도해 드립니다." },
               { q: "직장인이나 학생도 수강할 수 있는 야간/주말 시간표가 있나요?", a: "네! 직장인과 학생분들을 위해 **야간반과 주말반**을 운영하고 있습니다. 본인의 스케줄에 맞춰 유동적으로 수업 시간을 조율하실 수 있어 업무와 병행이 가능합니다." },
               { q: "네일아트 학원비 외에 추가되는 재료비는 별도인가요?", a: "수강생분들의 초기 비용 부담을 최소화하기 위해 등록 시 **전문가용 재료 풀세트를 무상으로 제공**해 드립니다. 별도 재료비 걱정 없이 시작하실 수 있습니다." },
-              { q: "내일배움카드 네일학원으로 등록할 수 있나요?", a: "저희 학원은 내일배움카드(국비카드)로 직접 수업을 결제하는 **네일아트 국비지원 기관은 아닙니다.** 다만 **내일배움카드 소지자는 카드 사용 없이도 별도 할인 혜택을 즉시 받으실 수 있습니다.** 자체 장학 지원 시스템을 통해 국비 수준 이상의 혜택을 모든 수강생에게 제공합니다." },
+              { q: "내일배움카드로 네일학원을 다닐 수 있나요?", a: "고용노동부 인가를 받은 훈련기관의 인가 과정에 한해 사용할 수 있습니다. 모든 네일학원이 해당하지는 않으므로 HRD-Net(hrd.go.kr)에서 해당 과정이 실제로 등록되어 있는지와 자부담금을 직접 확인하세요." },
               { q: "자격증 취득 후 호주·캐나다 워킹홀리데이로 네일 취업이 가능한가요?", a: "네, 가능합니다! **한국 미용사(네일) 국가자격증을 영문 공증**하면 호주·캐나다·일본 현지 네일샵 구직 시 핵심 스펙이 됩니다. 특히 호주 워킹홀리데이는 시급 AUD $20~30 수준으로 국내보다 훨씬 높은 수입을 기대할 수 있습니다. 해외취업 준비 방법은 무료 상담으로 자세히 안내해 드립니다." },
             ].map((faq, i) => (
               <details key={i} style={{ background: "white", border: "1px solid #f1f5f9", borderRadius: 20, padding: "24px", boxShadow: "0 4px 20px rgba(244,63,94,0.02)" }}>

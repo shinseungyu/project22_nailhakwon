@@ -19,8 +19,8 @@ export default function FundingPage() {
           <div className={styles.headerIcon}>
             <Zap size={24} />
           </div>
-          <h1 className={styles.title}>저희 학원 자체 장학 지원 안내</h1>
-          <p className={styles.subtitle}>국비지원보다 쉽고, 혜택은 더 강력하게</p>
+          <h1 className={styles.title}>네일학원 국비지원 — 내일배움카드 신청과 조건</h1>
+          <p className={styles.subtitle}>국비지원 과정과 일반 과정, 무엇이 어떻게 다른지 항목별로 비교했습니다</p>
         </header>
 
         {/* Integrated Form */}
@@ -80,9 +80,9 @@ export default function FundingPage() {
           </h3>
           <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
             {[
-              { q: "내일배움카드 없으면 신청 못하나요?", a: "아니요! 지금 발급만 해두면 바로 신청 가능해요. 발급 방법도 상담으로 안내해드려요!" },
-              { q: "국비지원은 누구나 받을 수 있나요?", a: "네! 구직자, 재직자, 대학생 대부분 가능해요. 본인 가능 여부가 궁금하다면 무료 상담으로 확인하세요!" },
-              { q: "수강 후 취업도 도와주나요?", a: "포트폴리오부터 이력서, 취업 컨설팅까지 전담팀이 지원해요. 상담 신청 시 커리큘럼과 사례도 알려드립니다!" },
+              { q: "내일배움카드 없으면 신청 못하나요?", a: "카드를 먼저 발급받아야 인가 과정을 수강할 수 있습니다. HRD-Net에서 온라인 신청이 가능하며, 심사에 시간이 걸리므로 수강 시점에서 역산해 미리 신청하는 것이 좋습니다." },
+              { q: "국비지원은 누구나 받을 수 있나요?", a: "구직자와 재직자 모두 신청 대상이지만 요건과 자부담 비율이 달라집니다. 본인에게 적용되는 조건은 HRD-Net과 고용센터에서 확인하는 것이 정확합니다." },
+              { q: "수료 후 취업 지원이 있나요?", a: "학원마다 다릅니다. 취업 연계를 안내하는 곳이라도 구인 정보 전달 수준인지 실제 추천으로 이어지는지 차이가 크므로, 등록 전에 연계 방식을 구체적으로 확인하세요." },
             ].map((faq, i) => (
               <details key={i} style={{ background: "white", border: "1px solid #e2e8f0", borderRadius: 14, padding: "18px 20px" }}>
                 <summary style={{ fontWeight: 700, cursor: "pointer", listStyle: "none", display: "flex", justifyContent: "space-between", alignItems: "center", fontSize: 15, color: "#1e293b" }}>
@@ -98,11 +98,11 @@ export default function FundingPage() {
         </div>
 
         <section className={styles.card} style={{ marginBottom: 32, borderLeft: "4px solid var(--primary)", background: "var(--primary-light)" }}>
-          <h2 style={{ fontSize: 20, fontWeight: 800, marginBottom: 12, color: "var(--primary)" }}>왜 국비지원 대신 저희 학원인가요?</h2>
+          <h2 style={{ fontSize: 20, fontWeight: 800, marginBottom: 12, color: "var(--primary)" }}>국비지원이 항상 유리한 것은 아닙니다</h2>
           <p style={{ color: "var(--text-primary)", fontSize: 15, lineHeight: 1.6, fontWeight: 500 }}>
-            번거로운 카드 발급 과정과 긴 대기 시간, 그리고 저가형 재료 세트에 실망하셨나요? 
-            저희 네일아트학원만의 체계적인 교육 과정으로 수강생분들이 오직 실력 향상에만 집중할 수 있도록 
-            **자체 장학 시스템**을 운영하고 있습니다.
+            비용만 보면 국비지원 과정이 앞섭니다. 다만 카드 발급에 시간이 걸리고, 개강 일정과 정원이 정해져 있으며,
+            출석률 기준을 채우지 못하면 지원금 반환 문제가 생길 수 있습니다.
+            시작 시점과 출석 가능 여부를 함께 놓고 판단해야 실제로 나에게 맞는 선택이 보입니다.
           </p>
         </section>
 
@@ -110,78 +110,78 @@ export default function FundingPage() {
           <div className={styles.card}>
             <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 16 }}>
               <div style={{ padding: 10, background: "#fef2f2", borderRadius: 12, color: "var(--primary)" }}><ShieldCheck size={24} /></div>
-              <h3 style={{ fontSize: 18, fontWeight: 800 }}>조건 없는 즉시 할인</h3>
+              <h3 style={{ fontSize: 18, fontWeight: 800 }}>자부담금을 먼저 확인하세요</h3>
             </div>
             <p style={{ fontSize: 14, color: "var(--text-secondary)", lineHeight: 1.6 }}>
-              소득 수준이나 취업 상태에 따른 복잡한 증빙 서류가 필요 없습니다. 
-              본 아카데미 수강을 원하는 분이라면 누구나 장학 혜택을 적용받아 합리적인 비용으로 시작할 수 있습니다.
+              국비지원은 전액 무료가 아닙니다. 훈련 과정과 개인 요건에 따라 자부담 비율이 정해져 있고,
+              과정 상세 페이지에 금액이 표시됩니다. HRD-Net에서 해당 과정의 자부담금을 직접 확인한 뒤 비교하세요.
             </p>
           </div>
 
           <div className={styles.card}>
             <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 16 }}>
               <div style={{ padding: 10, background: "#f0fdf4", borderRadius: 12, color: "#16a34a" }}><Award size={24} /></div>
-              <h3 style={{ fontSize: 18, fontWeight: 800 }}>프리미엄 재료 풀세트</h3>
+              <h3 style={{ fontSize: 18, fontWeight: 800 }}>재료비는 대개 별도입니다</h3>
             </div>
             <p style={{ fontSize: 14, color: "var(--text-secondary)", lineHeight: 1.6 }}>
-              단가 맞춤형 저가 재료가 아닙니다. 실제 현직 원장님들이 사용하는 최고급 브랜드 재료 세트를 
-              장학 지원을 통해 무상으로 제공받아 완벽한 실습을 진행합니다.
+              국비지원은 훈련비를 지원하는 제도라 재료비는 보통 지원 범위에 포함되지 않습니다.
+              수강료가 낮아도 재료비가 크면 총액이 뒤집히므로, 등록 전에 포함 항목을 목록으로 받아 비교하세요.
             </p>
           </div>
         </div>
 
         {/* 국비카드 소지자 안내 */}
         <section className={styles.card} style={{ marginBottom: 32, borderLeft: "4px solid #3b82f6", background: "#eff6ff" }}>
-          <h2 style={{ fontSize: 18, fontWeight: 800, marginBottom: 10, color: "#1d4ed8" }}>국비카드(내일배움카드) 소지자 안내</h2>
+          <h2 style={{ fontSize: 18, fontWeight: 800, marginBottom: 10, color: "#1d4ed8" }}>카드가 있어도 아무 학원이나 되는 것은 아닙니다</h2>
           <p style={{ color: "#1e40af", fontSize: 15, lineHeight: 1.7, margin: 0 }}>
-            저희 학원은 <strong>국비카드(내일배움카드)로 수업을 듣는 국비지원 기관은 아닙니다.</strong><br/>
-            단, <strong>국비카드를 소지하고 계신 분은 별도 할인 혜택을 즉시 받으실 수 있습니다.</strong><br/>
-            <span style={{ fontSize: 13, opacity: 0.85 }}>카드 사용 없이 단순 소지만으로도 혜택 적용 — 상담 시 카드 소지 여부를 알려주세요.</span>
+            내일배움카드로 수강할 수 있는 것은 <strong>고용노동부 인가를 받은 훈련기관의 인가 과정</strong>에 한합니다.<br/>
+            학원 홍보물에 &lsquo;국비지원&rsquo;이라고 적혀 있어도 <strong>HRD-Net에서 해당 과정이 실제로 등록되어 있는지 직접 조회</strong>하는 것이 안전합니다.<br/>
+            <span style={{ fontSize: 13, opacity: 0.85 }}>hrd.go.kr에서 지역과 &lsquo;네일&rsquo;로 검색하면 인가 과정과 자부담금을 함께 확인할 수 있습니다.</span>
           </p>
         </section>
 
         <section className={styles.card} style={{ marginBottom: 40 }}>
           <h2 style={{ fontSize: 22, fontWeight: 800, marginBottom: 8, textAlign: "center" }}>국비지원 네일학원 vs 일반 네일학원 비용과 수업 인원</h2>
-          <p style={{ textAlign: "center", color: "var(--text-secondary)", fontSize: 14, marginBottom: 24 }}>국비지원 기관과 저희 학원의 차이를 항목별로 비교해 드립니다.</p>
+          <p style={{ textAlign: "center", color: "var(--text-secondary)", fontSize: 14, marginBottom: 24 }}>국비지원 과정과 일반 과정의 차이를 항목별로 정리했습니다.</p>
           <div style={{ overflowX: "auto" }}>
             <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 14 }}>
               <thead>
                 <tr style={{ background: "#f8fafc" }}>
                   <th style={{ padding: "12px", border: "1px solid var(--border-color)", textAlign: "left" }}>비교 항목</th>
                   <th style={{ padding: "12px", border: "1px solid var(--border-color)", textAlign: "center" }}>국비지원 네일학원</th>
-                  <th style={{ padding: "12px", border: "1px solid var(--border-color)", textAlign: "center", color: "var(--primary)", background: "var(--primary-light)" }}>저희 학원 (일반 네일학원)</th>
+                  <th style={{ padding: "12px", border: "1px solid var(--border-color)", textAlign: "center", color: "var(--primary)", background: "var(--primary-light)" }}>일반 과정 (자비 부담)</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td style={{ padding: "12px", border: "1px solid var(--border-color)", fontWeight: 600 }}>수강 비용</td>
                   <td style={{ padding: "12px", border: "1px solid var(--border-color)", textAlign: "center" }}>국비카드로 결제 (카드 발급 필수)</td>
-                  <td style={{ padding: "12px", border: "1px solid var(--border-color)", textAlign: "center", fontWeight: 700 }}>자체 장학 할인 즉시 적용 (당일)</td>
+                  <td style={{ padding: "12px", border: "1px solid var(--border-color)", textAlign: "center", fontWeight: 700 }}>상담 후 바로 등록 가능</td>
                 </tr>
                 <tr>
                   <td style={{ padding: "12px", border: "1px solid var(--border-color)", fontWeight: 600 }}>수업 인원</td>
-                  <td style={{ padding: "12px", border: "1px solid var(--border-color)", textAlign: "center" }}>대규모 (20~30명)</td>
-                  <td style={{ padding: "12px", border: "1px solid var(--border-color)", textAlign: "center", fontWeight: 700 }}>소수정예 밀착 지도 (10명 내외)</td>
+                  <td style={{ padding: "12px", border: "1px solid var(--border-color)", textAlign: "center" }}>과정 정원에 따름</td>
+                  <td style={{ padding: "12px", border: "1px solid var(--border-color)", textAlign: "center", fontWeight: 700 }}>학원마다 상이 — 등록 전 확인 필요</td>
                 </tr>
                 <tr>
                   <td style={{ padding: "12px", border: "1px solid var(--border-color)", fontWeight: 600 }}>신청 절차</td>
                   <td style={{ padding: "12px", border: "1px solid var(--border-color)", textAlign: "center" }}>카드 발급 심사 (2~4주 소요)</td>
-                  <td style={{ padding: "12px", border: "1px solid var(--border-color)", textAlign: "center", fontWeight: 700 }}>상담 후 즉시 등록 가능</td>
+                  <td style={{ padding: "12px", border: "1px solid var(--border-color)", textAlign: "center", fontWeight: 700 }}>대기 없이 바로 시작 가능</td>
                 </tr>
                 <tr>
                   <td style={{ padding: "12px", border: "1px solid var(--border-color)", fontWeight: 600 }}>제공 재료</td>
-                  <td style={{ padding: "12px", border: "1px solid var(--border-color)", textAlign: "center" }}>단가 위주의 보급형 재료</td>
-                  <td style={{ padding: "12px", border: "1px solid var(--border-color)", textAlign: "center", fontWeight: 700 }}>전문가용 프리미엄 브랜드</td>
+                  <td style={{ padding: "12px", border: "1px solid var(--border-color)", textAlign: "center" }}>재료비 대개 별도</td>
+                  <td style={{ padding: "12px", border: "1px solid var(--border-color)", textAlign: "center", fontWeight: 700 }}>학원마다 상이 — 포함 여부 확인 필요</td>
                 </tr>
                 <tr>
                   <td style={{ padding: "12px", border: "1px solid var(--border-color)", fontWeight: 600 }}>사후 관리</td>
-                  <td style={{ padding: "12px", border: "1px solid var(--border-color)", textAlign: "center" }}>과정 종료 후 지원 미비</td>
-                  <td style={{ padding: "12px", border: "1px solid var(--border-color)", textAlign: "center", fontWeight: 700 }}>합격까지 무제한 보강 지원</td>
+                  <td style={{ padding: "12px", border: "1px solid var(--border-color)", textAlign: "center" }}>과정 종료 시 지원 종료</td>
+                  <td style={{ padding: "12px", border: "1px solid var(--border-color)", textAlign: "center", fontWeight: 700 }}>학원마다 상이 — 보강 규정 확인 필요</td>
                 </tr>
                 <tr>
                   <td style={{ padding: "12px", border: "1px solid var(--border-color)", fontWeight: 600 }}>국비카드 소지자 혜택</td>
                   <td style={{ padding: "12px", border: "1px solid var(--border-color)", textAlign: "center" }}>카드로 결제하는 방식</td>
-                  <td style={{ padding: "12px", border: "1px solid var(--border-color)", textAlign: "center", fontWeight: 700, color: "var(--primary)" }}>소지만으로 추가 할인 적용</td>
+                  <td style={{ padding: "12px", border: "1px solid var(--border-color)", textAlign: "center", fontWeight: 700, color: "var(--primary)" }}>카드와 무관 — 자비 부담</td>
                 </tr>
               </tbody>
             </table>
@@ -208,7 +208,7 @@ export default function FundingPage() {
             ))}
           </div>
           <div style={{ marginTop: 16, padding: 14, background: "#fff7ed", borderRadius: 10, border: "1px solid #fed7aa", fontSize: 13, color: "#92400e", lineHeight: 1.6 }}>
-            ⚠️ <strong>주의:</strong> 내일배움카드 발급까지 최소 2~4주 소요되며, 지원 학원이 한정되어 있어 원하는 시기에 바로 시작하기 어려울 수 있습니다. 즉시 시작을 원하신다면 저희 자체 장학 혜택을 먼저 확인해 보세요.
+            ⚠️ <strong>주의:</strong> 내일배움카드 발급까지 최소 2~4주 소요되며, 지원 학원이 한정되어 있어 원하는 시기에 바로 시작하기 어려울 수 있습니다. 원하는 시기에 바로 시작해야 한다면 일반 과정도 함께 알아보는 것이 좋습니다.
           </div>
         </section>
 
@@ -227,12 +227,12 @@ export default function FundingPage() {
               </div>
             </div>
             <div style={{ padding: 20, border: "2px solid var(--primary)", borderRadius: 16, background: "var(--primary-light)" }}>
-              <p style={{ fontSize: 13, fontWeight: 700, color: "var(--primary)", marginBottom: 12 }}>저희 학원 (자체 장학)</p>
+              <p style={{ fontSize: 13, fontWeight: 700, color: "var(--primary)", marginBottom: 12 }}>일반 과정 (자비 부담)</p>
               <div style={{ display: "flex", flexDirection: "column", gap: 8, fontSize: 13 }}>
-                <div style={{ display: "flex", justifyContent: "space-between" }}><span>수강료 (장학 할인 적용)</span><span>상담 후 안내</span></div>
-                <div style={{ display: "flex", justifyContent: "space-between" }}><span>재료비</span><span style={{ color: "var(--primary)", fontWeight: 700 }}>40만원 상당 무상</span></div>
-                <div style={{ display: "flex", justifyContent: "space-between" }}><span>등록 대기</span><span style={{ color: "var(--primary)", fontWeight: 700 }}>즉시 가능</span></div>
-                <div style={{ display: "flex", justifyContent: "space-between", fontWeight: 700, borderTop: "1px solid #fecdd3", paddingTop: 8, color: "var(--primary)" }}><span>실질 부담 합계</span><span>상담 시 확인</span></div>
+                <div style={{ display: "flex", justifyContent: "space-between" }}><span>수강료 (전액 본인 부담)</span><span>학원별 상이</span></div>
+                <div style={{ display: "flex", justifyContent: "space-between" }}><span>재료비</span><span>포함 여부 확인 필요</span></div>
+                <div style={{ display: "flex", justifyContent: "space-between" }}><span>등록 대기</span><span style={{ color: "var(--primary)", fontWeight: 700 }}>대기 없음</span></div>
+                <div style={{ display: "flex", justifyContent: "space-between", fontWeight: 700, borderTop: "1px solid #fecdd3", paddingTop: 8, color: "var(--primary)" }}><span>실질 부담 합계</span><span>총액으로 비교</span></div>
               </div>
             </div>
           </div>
@@ -245,7 +245,7 @@ export default function FundingPage() {
             {[
               { q: "재직 중인데 내일배움카드 신청이 가능한가요?", a: "네, 재직자도 신청 가능합니다. 단, 재직자는 훈련비의 45~55% 지원이며, 자부담이 발생합니다. 월 급여 300만원 이하 재직자는 더 높은 지원율이 적용될 수 있습니다." },
               { q: "네일아트 국비지원 학원은 어디서 찾나요?", a: "HRD-Net(www.hrd.go.kr)에서 '네일아트' 또는 '미용사(네일)'로 검색하시면 인근 국비지원 학원 목록을 확인하실 수 있습니다. 단, 지역에 따라 학원 수가 적을 수 있습니다." },
-              { q: "국비지원 학원과 저희 학원 중 어떤 게 나을까요?", a: "즉시 시작, 소수정예 밀착 지도, 프리미엄 재료를 원하신다면 저희 학원을 추천드립니다. 반면 국비카드 발급 후 수강료를 최소화하고 싶으신 분께는 국비지원 학원도 선택지가 될 수 있습니다. 정확한 비용은 무료 상담을 통해 비교해 드립니다." },
+              { q: "국비지원 과정과 일반 과정 중 어떤 게 나을까요?", a: "비용을 줄이는 것이 우선이고 개강 일정에 맞출 수 있다면 국비지원이 유리합니다. 반대로 원하는 시점에 바로 시작해야 하거나 출석률 기준을 맞추기 어렵다면 일반 과정이 나을 수 있습니다. 중간에 그만두면 국비지원이 오히려 가장 비싼 선택이 됩니다." },
             ].map((item, i) => (
               <div key={i} style={{ padding: 16, background: "var(--bg-secondary)", borderRadius: 12 }}>
                 <p style={{ fontWeight: 700, marginBottom: 8, fontSize: 14, color: "var(--primary)" }}>Q. {item.q}</p>
@@ -256,7 +256,7 @@ export default function FundingPage() {
         </section>
 
         <div style={{ background: "var(--text-primary)", color: "white", padding: 32, borderRadius: 24, textAlign: "center" }}>
-          <h3 style={{ fontSize: 20, fontWeight: 800, marginBottom: 12 }}>내 상황에 맞는 장학 혜택 확인하기</h3>
+          <h3 style={{ fontSize: 20, fontWeight: 800, marginBottom: 12 }}>내 조건에 맞는 과정 알아보기</h3>
           <p style={{ fontSize: 14, opacity: 0.8, marginBottom: 24 }}>
             수강 희망 시기 및 과정을 알려주시면 가장 큰 할인 혜택을 즉시 안내해 드립니다.
           </p>

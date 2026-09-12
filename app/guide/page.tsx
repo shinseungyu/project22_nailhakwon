@@ -101,7 +101,7 @@ export default function GuidePage() {
 
           {activeTab === "tab2" && (
             <section style={{ animation: 'fadeIn 0.3s ease-out' }}>
-              <h2 style={{ fontSize: '22px', fontWeight: '800', marginBottom: '24px' }}>저희 학원 교육 로드맵</h2>
+              <h2 style={{ fontSize: '22px', fontWeight: '800', marginBottom: '24px' }}>네일 교육 단계별 로드맵</h2>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
                 {[
                   { step: "Step 01", title: "국가자격증 정규반", desc: "기초 이론부터 실기 시험 1~4과목까지 완벽 마스터 (합격률 95%)" },
@@ -123,7 +123,7 @@ export default function GuidePage() {
           {activeTab === "tab3" && (
             <section style={{ animation: 'fadeIn 0.3s ease-out' }}>
               <h2 style={{ fontSize: '22px', fontWeight: '800', marginBottom: '16px' }}>네일샵 창업 체크리스트</h2>
-              <p style={{ color: 'var(--text-secondary)', marginBottom: '32px' }}>창업 준비, 무엇부터 해야 할지 막막하신가요? 저희 학원가 도와드립니다.</p>
+              <p style={{ color: 'var(--text-secondary)', marginBottom: '32px' }}>창업 준비, 무엇부터 해야 할지 막막하신가요? 단계별로 정리해 드립니다.</p>
               
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px' }}>
                 {[

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { ChevronLeft, CheckCircle2, Globe, Plane, DollarSign } from "lucide-react";
 import styles from "../page.module.css";
+import { countryList, topicList } from "@/data/jobs";
 
 export default function EmploymentPage() {
   return (
@@ -29,6 +30,59 @@ export default function EmploymentPage() {
             한국 자격증 보유자라면 <strong>워킹홀리데이 비자만으로도 현지 네일샵 취업이 가능</strong>합니다.
             국내보다 2~3배 높은 시급과 팁 문화까지 더해지면 실질 수입이 크게 올라갑니다.
           </p>
+        </section>
+
+        {/* 국가별·주제별 상세 페이지 — 여기서 서브페이지로 내려간다 */}
+        <section style={{ marginBottom: 40 }}>
+          <h2 style={{ fontSize: 24, fontWeight: 800, marginBottom: 8, color: "var(--text-primary)" }}>
+            국가별 상세 가이드
+          </h2>
+          <p style={{ color: "var(--text-secondary)", fontSize: 14, lineHeight: 1.7, marginBottom: 20 }}>
+            비자 구조와 시급, 자격 인정 방식이 나라마다 다릅니다. 관심 있는 나라를 먼저 확인해 보세요.
+          </p>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(230px, 1fr))", gap: 12, marginBottom: 36 }}>
+            {countryList.map((c) => (
+              <Link
+                key={c.slug}
+                href={`/employment/${c.slug}`}
+                style={{
+                  display: "flex", alignItems: "center", gap: 12, textDecoration: "none",
+                  background: "#fff", border: "1px solid #f1f0ef", borderRadius: 14, padding: "16px 18px",
+                }}
+              >
+                <span style={{ fontSize: 26, flexShrink: 0 }}>{c.flag}</span>
+                <span>
+                  <span style={{ display: "block", fontWeight: 800, fontSize: 15, color: "var(--text-primary)" }}>
+                    {c.nav}
+                  </span>
+                  <span style={{ display: "block", fontSize: 12.5, color: "var(--text-muted)", marginTop: 2 }}>
+                    {c.keyword}
+                  </span>
+                </span>
+              </Link>
+            ))}
+          </div>
+
+          <h2 style={{ fontSize: 24, fontWeight: 800, marginBottom: 8, color: "var(--text-primary)" }}>
+            준비 항목별 가이드
+          </h2>
+          <p style={{ color: "var(--text-secondary)", fontSize: 14, lineHeight: 1.7, marginBottom: 20 }}>
+            어느 나라를 가든 공통으로 준비해야 하는 것들입니다.
+          </p>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
+            {topicList.map((t) => (
+              <Link
+                key={t.slug}
+                href={`/employment/${t.slug}`}
+                style={{
+                  background: "var(--primary-light)", color: "var(--primary-dark, #9f1239)",
+                  fontSize: 13.5, fontWeight: 700, padding: "10px 20px", borderRadius: 50, textDecoration: "none",
+                }}
+              >
+                {t.nav} &rarr;
+              </Link>
+            ))}
+          </div>
         </section>
 
         {/* 국가별 안내 */}
@@ -228,8 +282,8 @@ export default function EmploymentPage() {
             <p>
               <strong>일본 네일 취업</strong>은 지리적 근접성과 문화적 유사성 덕분에 첫 해외 취업지로 인기가 높습니다.
               특히 도쿄·오사카를 중심으로 K-뷰티 붐이 지속되면서 한국식 젤네일 기술에 대한 수요가 급증하고 있습니다.
-              일본은 워킹홀리데이 외에도 특정기능 비자를 통해 뷰티 분야 장기 취업이 가능해
-              <strong>네일아트 해외취업</strong>의 장기 플랜으로도 적합합니다.
+              다만 일본 네일 업계는 JNA 계열 민간자격이 업계 표준이고, 워홀 이후의 장기 취업 비자는
+              직종 요건이 엄격해 사안별 확인이 필요합니다. 자세한 내용은 <strong>일본 네일 취업</strong> 페이지에 정리했습니다.
             </p>
           </section>
 
