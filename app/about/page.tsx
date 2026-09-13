@@ -171,7 +171,7 @@ export default function AboutPage() {
           </p>
         </div>
         <p style={{ fontSize: 13.5, color: 'var(--text-muted)', lineHeight: 1.8, margin: '14px 0 0' }}>
-          본 사이트는 교육기관이 아닙니다. 상담 신청 시 입력하신 정보는 동의하신 범위에서 제휴 상담처에
+          본 사이트는 교육기관이 아닙니다. 상담 신청 시 입력하신 정보는 동의하신 범위에서 올댓뷰티 상담사에게
           전달되며, 자세한 내용은 개인정보 처리방침에서 확인하실 수 있습니다.
         </p>
       </section>

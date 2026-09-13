@@ -56,7 +56,7 @@ export default function TermsOfServicePage() {
         <ul style={ulStyle}>
           <li>네일 학원비·국비지원·자격증·취업에 관한 정보 제공</li>
           <li>국가별 네일리스트 해외취업 정보 제공</li>
-          <li>이용자가 신청한 경우 제휴 상담처 연결</li>
+          <li>이용자가 신청한 경우 올댓뷰티 상담사 연결</li>
         </ul>
         <p style={{ marginTop: '12px' }}>
           <strong>
@@ -113,7 +113,7 @@ export default function TermsOfServicePage() {
         </ul>
         <p style={{ marginTop: '12px' }}>
           회사는 이용자가 본 사이트의 정보에 근거하여 내린 결정과 그 결과에 대해 책임을 지지 않습니다.
-          또한 제휴 상담처와 이용자 사이에 발생한 분쟁에 대하여 회사는 당사자가 아니며, 다만 원활한 해결을
+          또한 올댓뷰티 상담사와 이용자 사이에 발생한 분쟁에 대하여 회사는 당사자가 아니며, 다만 원활한 해결을
           위해 필요한 범위에서 협조합니다.
         </p>
       </section>

@@ -6,7 +6,7 @@ import PageConsult from '@/components/PageConsult';
  * ⚠️ 이 페이지는 project5(newsioo.com)의 "관세계산기" 처리방침이 그대로 복사돼 있었다.
  * 운영 주체도 newsioo.com 으로 적혀 있었고, "회원가입 절차가 없으므로 이름·연락처 등
  * 개인정보를 수집하지 않습니다" 라고 되어 있었는데 실제로는 상담 폼이
- * 이름·생년월일·연락처·성별·지역을 수집해 제휴 상담처에 제공한다.
+ * 이름·생년월일·연락처·성별·지역을 수집해 올댓뷰티 상담사에게 제공한다.
  * 사실과 다른 처리방침이라 이 사이트의 실제 처리 내용으로 다시 작성했다.
  */
 export const metadata: Metadata = {
@@ -50,7 +50,7 @@ export default function PrivacyPolicyPage() {
           본 개인정보 처리방침은 {OPERATOR.company}(이하 &quot;회사&quot;)가 운영하는{' '}
           <strong>{SITE_URL.replace('https://', '')}</strong>({SITE_NAME}, 이하 &quot;사이트&quot;)에서
           이용자의 개인정보를 어떻게 수집·이용·제공·보호하는지를 설명합니다. 본 사이트는 네일 교육 관련
-          정보를 제공하고, 이용자가 신청한 경우 제휴 상담처를 연결해 드리는 서비스를 운영합니다.
+          정보를 제공하고, 이용자가 신청한 경우 올댓뷰티 상담사를 연결해 드리는 서비스를 운영합니다.
         </p>
       </section>
 
@@ -79,7 +79,7 @@ export default function PrivacyPolicyPage() {
         <h2 style={h2Style}>3. 개인정보의 수집·이용 목적</h2>
         <ul style={ulStyle}>
           <li>상담 신청 접수 및 본인 확인</li>
-          <li>이용자가 선택한 지역·관심 과정에 맞는 제휴 상담처 연결</li>
+          <li>이용자가 선택한 지역·관심 과정에 맞는 올댓뷰티 상담사 연결</li>
           <li>수강료·개강 일정 등 문의하신 내용에 대한 안내</li>
           <li>서비스 운영 및 개선, 방문자 통계 분석</li>
           <li>맞춤형 광고 제공</li>
@@ -94,8 +94,7 @@ export default function PrivacyPolicyPage() {
         </p>
         <ul style={ulStyle}>
           <li>
-            <strong>제공받는 자</strong> — 네일·뷰티 교육기관(학원·아카데미) 및 해당 기관의 상담 위탁사
-            (이하 &quot;제휴 상담처&quot;)
+            <strong>제공받는 자</strong> — 올댓뷰티 상담사
           </li>
           <li>
             <strong>제공 항목</strong> — 이름, 생년월일, 휴대전화번호, 성별, 관심 지역, 자격증 보유 여부
@@ -108,9 +107,7 @@ export default function PrivacyPolicyPage() {
           </li>
         </ul>
         <p style={{ marginTop: '12px' }}>
-          제휴 상담처는 이용자가 선택한 지역·관심 과정에 따라 정해지며, 한 곳이 아닌 복수의 상담처에
-          제공될 수 있습니다. <strong>실제 제공 시에는 제공받는 상담처의 상호를 특정하여 사전에 안내</strong>
-          드리며, 원하지 않으실 경우 제공하지 않습니다. 현재 제휴 상담처 목록은{' '}
+          제공받는 자와 제공 내역에 관한 문의는{' '}
           <a href={`mailto:${OPERATOR.email}`} style={{ color: '#2563eb' }}>
             {OPERATOR.email}
           </a>{' '}
