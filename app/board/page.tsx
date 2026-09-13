@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { ChevronLeft } from 'lucide-react';
 import posts from '@/data/posts.json';
 import { SITE_NAME, SITE_URL, OG_IMAGE } from '@/lib/site';
+import PageConsult from '@/components/PageConsult';
 
 type Post = {
   id: number;
@@ -108,6 +109,9 @@ export default function BoardPage() {
           모두 학원 선택 전에 확인해 두면 좋은 내용입니다.
         </p>
       </header>
+
+      {/* 상담 폼 — 메인과 같은 폼, H1 바로 아래·첫 h2 위 */}
+      <PageConsult label="네일학원 무료 상담 신청" />
 
       <div
         style={{

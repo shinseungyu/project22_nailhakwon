@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ChevronLeft } from 'lucide-react';
-import FormSection from '@/components/FormSection';
 import { SITE_NAME, SITE_URL, OPERATOR, UPDATED } from '@/lib/site';
+import PageConsult from '@/components/PageConsult';
 
 export const metadata: Metadata = {
   title: '문의하기 — 상담 신청과 정보 수정 요청',
@@ -64,15 +64,7 @@ export default function ContactPage() {
         학원 상담은 아래 신청 폼으로, 그 외 문의는 이메일로 접수합니다.
       </p>
 
-      <section style={{ marginBottom: 52 }}>
-        <h2 style={{ fontSize: 20, fontWeight: 900, margin: '0 0 14px', color: 'var(--text-primary)' }}>
-          학원 상담 신청
-        </h2>
-        <p style={{ fontSize: 15.5, lineHeight: 1.8, color: 'var(--text-secondary)', margin: '0 0 18px' }}>
-          지역과 관심 과정을 남겨 주시면 조건에 맞는 상담처를 안내해 드립니다. 비용은 들지 않습니다.
-        </p>
-        <FormSection />
-      </section>
+      <PageConsult label="학원 상담 신청" />
 
       <section style={{ marginBottom: 40 }}>
         <h2 style={{ fontSize: 20, fontWeight: 900, margin: '0 0 14px', color: 'var(--text-primary)' }}>

@@ -4,6 +4,7 @@ import { useState } from "react";
 import styles from "../page.module.css";
 import Link from 'next/link';
 import { ChevronLeft, GraduationCap, Map, Rocket, CheckCircle2 } from 'lucide-react';
+import PageConsult from '@/components/PageConsult';
 
 export default function GuidePage() {
   const [activeTab, setActiveTab] = useState("tab1");
@@ -26,6 +27,9 @@ export default function GuidePage() {
             자격증 취득부터 취업, 창업까지의 로드맵을 확인하세요.
           </p>
         </header>
+
+        {/* 상담 폼 — 메인과 같은 폼, H1 바로 아래·첫 h2 위 */}
+        <PageConsult label="학원비 비교 무료 상담" />
         
         {/* Tab Navigation */}
         <div style={{ display: 'flex', gap: '8px', marginBottom: '32px', borderBottom: '1px solid var(--border-color)', paddingBottom: '16px', overflowX: 'auto' }}>

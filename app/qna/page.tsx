@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ChevronLeft } from 'lucide-react';
 import { SITE_NAME, SITE_URL, OG_IMAGE } from '@/lib/site';
+import PageConsult from '@/components/PageConsult';
 
 export const metadata: Metadata = {
   title: '네일학원 자주 묻는 질문 — 비용·자격증·국비지원',
@@ -142,6 +143,9 @@ export default function QnaPage() {
           정리했습니다.
         </p>
       </header>
+
+      {/* 상담 폼 — 메인과 같은 폼, H1 바로 아래·첫 h2 위 */}
+      <PageConsult label="궁금한 점, 무료 상담으로 확인하기" />
 
       <section style={{ marginBottom: 48 }}>
         {faqs.map((faq, i) => (

@@ -3,9 +3,9 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ChevronLeft } from 'lucide-react';
 import posts from '@/data/posts.json';
-import FormSection from '@/components/FormSection';
 import { parseArticle, tableOfContents, countWords } from '@/lib/article';
 import { SITE_NAME, SITE_URL, OG_IMAGE } from '@/lib/site';
+import PageConsult from '@/components/PageConsult';
 
 type Post = {
   id: number;
@@ -173,12 +173,7 @@ export default async function BoardDetailPage({ params }: { params: Promise<{ id
         </p>
       </header>
 
-      <section style={{ marginBottom: 48 }}>
-        <h2 style={{ fontSize: 18, fontWeight: 900, marginBottom: 14, color: 'var(--text-primary)' }}>
-          네일학원 맞춤 상담받기
-        </h2>
-        <FormSection />
-      </section>
+      <PageConsult label="네일학원 맞춤 상담받기" />
 
       {toc.length > 1 && (
         <nav

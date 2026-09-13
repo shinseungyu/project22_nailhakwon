@@ -4,8 +4,8 @@ import { notFound } from 'next/navigation';
 import { ChevronLeft } from 'lucide-react';
 import { jobPages, getJobPage } from '@/data/jobs';
 import Blocks from '@/components/Blocks';
-import FormSection from '@/components/FormSection';
 import { SITE_NAME, SITE_URL, OG_IMAGE, UPDATED, PUBLISHED } from '@/lib/site';
+import PageConsult from '@/components/PageConsult';
 
 export const dynamicParams = false;
 
@@ -168,12 +168,7 @@ export default async function JobPageRoute({ params }: { params: Promise<{ slug:
       </header>
 
       {/* 상담 폼은 H1 바로 아래, 첫 h2 위 */}
-      <section style={{ marginBottom: 52 }}>
-        <h2 style={{ fontSize: 18, fontWeight: 900, marginBottom: 14, color: 'var(--text-primary)' }}>
-          해외취업 준비, 무료로 상담받기
-        </h2>
-        <FormSection />
-      </section>
+      <PageConsult label="해외취업 준비, 무료로 상담받기" />
 
       <Blocks sections={page.sections} />
 

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { BookOpen, ChevronLeft, Clock, Users, CheckCircle, Award } from "lucide-react";
 import styles from "../page.module.css";
+import PageConsult from '@/components/PageConsult';
 
 const courses = [
   {
@@ -69,6 +70,9 @@ export default function CurriculumPage() {
           <h1 className={styles.title}>네일학원 커리큘럼 안내</h1>
           <p className="subtitle">네일아트 학원비용별 과정 비교 · 소수정예 10명 내외 밀착 지도</p>
         </header>
+
+        {/* 상담 폼 — 메인과 같은 폼, H1 바로 아래·첫 h2 위 */}
+        <PageConsult label="과정별 수강료 무료 상담" />
 
         {/* 과정 카드 */}
         <section style={{ marginBottom: 48 }}>

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { SITE_NAME, SITE_URL, OPERATOR, UPDATED } from '@/lib/site'
+import PageConsult from '@/components/PageConsult';
 
 /**
  * ⚠️ 이 페이지는 project5(newsioo.com)의 "관세계산기" 처리방침이 그대로 복사돼 있었다.
@@ -39,6 +40,9 @@ export default function PrivacyPolicyPage() {
     >
       <h1 style={{ fontSize: '2rem', fontWeight: 'bold', marginBottom: '8px' }}>개인정보 처리방침</h1>
       <p style={{ color: '#888', marginBottom: '32px' }}>최종 업데이트: {UPDATED}</p>
+
+      {/* 상담 폼 — 메인과 같은 폼, H1 바로 아래·첫 h2 위 */}
+      <PageConsult label="네일학원 무료 상담 신청" />
 
       <section style={sectionStyle}>
         <h2 style={h2Style}>1. 개요</h2>

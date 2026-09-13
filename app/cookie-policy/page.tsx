@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { SITE_NAME, UPDATED } from '@/lib/site'
+import PageConsult from '@/components/PageConsult';
 
 /** ⚠️ 메타데이터가 project5(관세계산기) 템플릿 그대로였다. 이 사이트 것으로 교체. */
 export const metadata: Metadata = {
@@ -14,6 +15,9 @@ export default function CookiePolicyPage() {
     <main style={{ maxWidth: '800px', margin: '0 auto', padding: '40px 20px', fontFamily: 'sans-serif', color: '#333', lineHeight: '1.8' }}>
       <h1 style={{ fontSize: '2rem', fontWeight: 'bold', marginBottom: '8px' }}>쿠키 정책</h1>
       <p style={{ color: '#888', marginBottom: '32px' }}>최종 업데이트: {UPDATED}</p>
+
+      {/* 상담 폼 — 메인과 같은 폼, H1 바로 아래·첫 h2 위 */}
+      <PageConsult label="네일학원 무료 상담 신청" />
 
       <section style={{ marginBottom: '32px' }}>
         <h2 style={{ fontSize: '1.3rem', fontWeight: 'bold', marginBottom: '12px', borderBottom: '2px solid #eee', paddingBottom: '8px' }}>1. 쿠키란 무엇인가요?</h2>

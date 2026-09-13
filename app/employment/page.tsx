@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ChevronLeft, CheckCircle2, Globe, Plane, DollarSign } from "lucide-react";
 import styles from "../page.module.css";
 import { countryList, topicList } from "@/data/jobs";
+import PageConsult from '@/components/PageConsult';
 
 export default function EmploymentPage() {
   return (
@@ -20,6 +21,9 @@ export default function EmploymentPage() {
           <h1 className={styles.title}>네일리스트 해외취업 · 워킹홀리데이</h1>
           <p className={styles.subtitle}>호주·캐나다·일본·영국 네일 취업 완벽 가이드 2026</p>
         </header>
+
+        {/* 상담 폼 — 메인과 같은 폼, H1 바로 아래·첫 h2 위 */}
+        <PageConsult label="해외취업 준비, 무료로 상담받기" />
 
         {/* 왜 해외취업인가 */}
         <section className={styles.card} style={{ marginBottom: 32, borderLeft: "4px solid var(--primary)", background: "var(--primary-light)" }}>

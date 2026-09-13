@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ChevronLeft } from 'lucide-react';
 import { SITE_NAME, SITE_URL, SITE_ROLE, OPERATOR, UPDATED } from '@/lib/site';
+import PageConsult from '@/components/PageConsult';
 
 export const metadata: Metadata = {
   title: '사이트 소개 — 무엇을 어떻게 정리하나',
@@ -61,6 +62,9 @@ export default function AboutPage() {
       >
         {SITE_ROLE}
       </p>
+
+      {/* 상담 폼 — 메인과 같은 폼, H1 바로 아래·첫 h2 위 */}
+      <PageConsult label="네일학원 무료 상담 신청" />
 
       <section style={{ marginBottom: 40 }}>
         <h2 style={{ fontSize: 22, fontWeight: 800, margin: '0 0 14px', color: 'var(--text-primary)' }}>
