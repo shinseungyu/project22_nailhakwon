@@ -81,7 +81,8 @@ export default function FormSection() {
         <PrivacyModal onConfirm={handleConfirm} onClose={() => setShowModal(false)} />
       )}
 
-      <div className="w-full bg-gradient-to-r from-rose-400 to-brand rounded-[2rem] p-4 lg:p-5 shadow-[0_20px_40px_-15px_rgba(251,113,133,0.35)]">
+      {/* data-lead-form — 이 폼이 화면에 보이면 하단 고정 폼(BottomForm)이 숨는다 */}
+      <div data-lead-form className="w-full bg-gradient-to-r from-rose-400 to-brand rounded-[2rem] p-4 lg:p-5 shadow-[0_20px_40px_-15px_rgba(251,113,133,0.35)]">
         <div className="flex flex-col lg:flex-row gap-3 items-stretch">
 
           {/* Inputs Grid */}

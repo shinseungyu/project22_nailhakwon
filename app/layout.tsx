@@ -5,6 +5,7 @@ import { Geist } from 'next/font/google'
 import './globals.css'
 import '../styles/globals.css'
 import Footer from '@/components/Footer'
+import BottomForm from '@/components/BottomForm'
 import {
   SITE_NAME,
   SITE_SHORT,
@@ -237,6 +238,7 @@ export default function RootLayout({
         </nav>
         {children}
         <Footer />
+        <BottomForm />
       </body>
     </html>
   )

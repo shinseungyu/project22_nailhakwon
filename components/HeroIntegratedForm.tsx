@@ -73,7 +73,8 @@ export default function HeroIntegratedForm() {
     <>
       {showModal && <PrivacyModal onConfirm={handleConfirm} onClose={() => setShowModal(false)} />}
 
-      <div className="w-full bg-brand-gradient rounded-[2rem] p-4 lg:p-5 shadow-[0_20px_40px_-15px_rgba(251,113,133,0.35)] text-left">
+      {/* data-lead-form — 이 폼이 화면에 보이면 하단 고정 폼(BottomForm)이 숨는다 */}
+      <div data-lead-form className="w-full bg-brand-gradient rounded-[2rem] p-4 lg:p-5 shadow-[0_20px_40px_-15px_rgba(251,113,133,0.35)] text-left">
         <div className="flex flex-col gap-3 items-stretch">
           
           {/* Inputs Grid - Row-based layout */}
