@@ -12,7 +12,6 @@ export default function HeroIntegratedForm() {
     mobile2: "",
     customer_sex: "2",
     region: "",
-    has_license: "",
   })
   const [showModal, setShowModal] = useState(false)
   const [submitted, setSubmitted] = useState(false)
@@ -62,7 +61,7 @@ export default function HeroIntegratedForm() {
         return
       }
       alert("신청이 완료되었습니다.")
-      setForm({ customer_name: "", customer_birth: "", mobile1: "010", mobile2: "", customer_sex: "2", region: "", has_license: "" })
+      setForm({ customer_name: "", customer_birth: "", mobile1: "010", mobile2: "", customer_sex: "2", region: "" })
     } catch {
       alert("네트워크 오류 발생")
     }
@@ -165,29 +164,12 @@ export default function HeroIntegratedForm() {
               <div className="absolute right-5 pointer-events-none text-stone-400 text-xs">▼</div>
             </div>
 
-            {/* 5. License */}
-            <div className="flex bg-white rounded-full px-5 py-3.5 shadow-sm items-center justify-between transition-shadow focus-within:ring-2 focus-within:ring-white/30">
-              <span className="text-[15px] font-medium text-stone-400">자격증 보유 여부</span>
-              <button 
-                type="button"
-                onClick={() => set("has_license", form.has_license === "Y" ? "N" : "Y")}
-                className="flex items-center gap-2 outline-none group shrink-0"
-              >
-                <span className={`text-[14px] font-bold transition-colors w-8 text-right ${form.has_license === "Y" ? "text-brand" : "text-stone-400"}`}>
-                  {form.has_license === "Y" ? "보유" : "없음"}
-                </span>
-                <div className={`relative w-11 h-6 rounded-full transition-colors duration-300 shadow-inner ${form.has_license === "Y" ? "bg-brand" : "bg-stone-200 group-hover:bg-stone-300"}`}>
-                  <div className={`absolute top-1 left-1 bg-white w-4 h-4 rounded-full shadow transition-transform duration-300 ease-out ${form.has_license === "Y" ? "translate-x-5" : "translate-x-0"}`} />
-                </div>
-              </button>
-            </div>
-
             {/* Submit Button */}
             <button
               type="button"
               onClick={handleSubmitClick}
               disabled={submitted}
-              className="w-full bg-stone-900 text-white rounded-full text-[17px] font-bold shadow-lg hover:bg-stone-800 active:scale-[0.98] transition-all duration-200 py-3.5 disabled:opacity-50 flex items-center justify-center gap-1.5 leading-none"
+              className="w-full md:col-span-2 bg-stone-900 text-white rounded-full text-[17px] font-bold shadow-lg hover:bg-stone-800 active:scale-[0.98] transition-all duration-200 py-3.5 disabled:opacity-50 flex items-center justify-center gap-1.5 leading-none"
             >
               상담 신청하기
             </button>

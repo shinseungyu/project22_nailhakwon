@@ -116,10 +116,10 @@ function PrivacyModal({ onConfirm, onClose }: { onConfirm: () => void; onClose: 
           </button>
           <div className="space-y-4">
             <ContentBox checked={priAgree} onChange={(v) => setPriAgree(v)} label="개인정보 수집 및 이용 동의" required>
-              수집 주체 : 네일아트학원<br />수집 목적 : 네일 관련 상담 및 문의 응대<br />수집 항목 : 성명, 휴대폰 번호, 생년월일, 성별, 거주 지역, 자격증 보유 여부<br />보유 기간 : 수집일로부터 1년 (또는 요청 시 즉시 파기)<br />동의 거부 시 상담 신청이 제한될 수 있습니다.
+              수집 주체 : 네일아트학원<br />수집 목적 : 네일 관련 상담 및 문의 응대<br />수집 항목 : 성명, 휴대폰 번호, 생년월일, 성별, 거주 지역<br />보유 기간 : 수집일로부터 1년 (또는 요청 시 즉시 파기)<br />동의 거부 시 상담 신청이 제한될 수 있습니다.
             </ContentBox>
             <ContentBox checked={thirdAgree} onChange={(v) => setThirdAgree(v)} label="개인정보 제3자 제공 동의" required>
-              제공받는 자 : 올댓뷰티 상담사<br />제공 목적 : 원활한 1:1 유선 상담 진행<br />제공 항목 : 성명, 휴대폰 번호, 생년월일, 성별, 거주 지역, 자격증 보유 여부<br />보유 기간 : 상담 목적 달성 시 즉시 파기<br />동의 거부 시 상담 신청이 제한될 수 있습니다.
+              제공받는 자 : 올댓뷰티 상담사<br />제공 목적 : 원활한 1:1 유선 상담 진행<br />제공 항목 : 성명, 휴대폰 번호, 생년월일, 성별, 거주 지역<br />보유 기간 : 상담 목적 달성 시 즉시 파기<br />동의 거부 시 상담 신청이 제한될 수 있습니다.
             </ContentBox>
           </div>
         </div>
@@ -143,7 +143,6 @@ export default function ConsultingForm() {
     mobile2: "",
     customer_sex: "2",
     region: "",
-    has_license: "",
   })
   const [showModal, setShowModal] = useState(false)
   const [submitted, setSubmitted] = useState(false)
@@ -172,7 +171,6 @@ export default function ConsultingForm() {
       mobile3: "",
       customer_sex: form.customer_sex,
       region: form.region,
-      has_license: form.has_license,
       category: "네일",
     }
     setSubmitted(true)
@@ -191,7 +189,7 @@ export default function ConsultingForm() {
         return
       }
       alert("신청이 완료되었습니다.")
-      setForm({ customer_name: "", customer_birth: "", mobile1: "010", mobile2: "", customer_sex: "2", region: "", has_license: "" })
+      setForm({ customer_name: "", customer_birth: "", mobile1: "010", mobile2: "", customer_sex: "2", region: "" })
     } catch {
       alert("네트워크 오류가 발생했습니다.")
     }
@@ -207,7 +205,7 @@ export default function ConsultingForm() {
           <div className="flex flex-col lg:flex-row gap-4 items-stretch">
             
             {/* Inputs Grid */}
-            <div className="flex-1 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-4">
               
               {/* 1. Name & Gender */}
               <div className="flex bg-white rounded-full pl-6 pr-2 py-2.5 shadow-sm items-center transition-all focus-within:ring-4 focus-within:ring-white/30">
@@ -292,23 +290,6 @@ export default function ConsultingForm() {
                   ))}
                 </select>
                 <div className="absolute right-6 pointer-events-none text-stone-300 text-xs">▼</div>
-              </div>
-
-              {/* 5. License */}
-              <div className="flex bg-white rounded-full px-6 py-4 shadow-sm items-center justify-between transition-all focus-within:ring-4 focus-within:ring-white/30 md:col-span-2 lg:col-span-1">
-                <span className="text-[16px] font-bold text-stone-400">자격증 보유</span>
-                <button 
-                  type="button"
-                  onClick={() => set("has_license", form.has_license === "Y" ? "N" : "Y")}
-                  className="flex items-center gap-3 outline-none group shrink-0"
-                >
-                  <span className={`text-[15px] font-black transition-colors ${form.has_license === "Y" ? "text-brand" : "text-stone-300"}`}>
-                    {form.has_license === "Y" ? "보유" : "미보유"}
-                  </span>
-                  <div className={`relative w-12 h-7 rounded-full transition-all duration-300 ${form.has_license === "Y" ? "bg-brand" : "bg-stone-100"}`}>
-                    <div className={`absolute top-1 left-1 bg-white w-5 h-5 rounded-full shadow-md transition-all duration-300 ease-out ${form.has_license === "Y" ? "translate-x-5" : "translate-x-0"}`} />
-                  </div>
-                </button>
               </div>
 
             </div>

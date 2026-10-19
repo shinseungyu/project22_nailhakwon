@@ -12,7 +12,6 @@ export default function FormSection() {
     mobile2: "",
     customer_sex: "2",
     region: "",
-    has_license: "",
   })
   const [showModal, setShowModal] = useState(false)
   const [submitted, setSubmitted] = useState(false)
@@ -48,7 +47,6 @@ export default function FormSection() {
       mobile3: "",
       customer_sex: form.customer_sex,
       region: form.region,
-      has_license: form.has_license,
       category: "네일",
     }
 
@@ -68,7 +66,7 @@ export default function FormSection() {
         return
       }
       alert("신청이 완료되었습니다.")
-      setForm({ customer_name: "", customer_birth: "", mobile1: "010", mobile2: "", customer_sex: "2", region: "", has_license: "" })
+      setForm({ customer_name: "", customer_birth: "", mobile1: "010", mobile2: "", customer_sex: "2", region: "" })
     } catch {
       alert("네트워크 오류가 발생했습니다.")
     }
@@ -171,23 +169,6 @@ export default function FormSection() {
                 ))}
               </select>
               <div className="absolute right-5 pointer-events-none text-gray-400 text-xs">▼</div>
-            </div>
-
-            {/* 5. License */}
-            <div className="flex bg-white rounded-full px-5 py-3.5 shadow-sm items-center justify-between transition-shadow focus-within:ring-2 focus-within:ring-brand/30">
-              <span className="text-[15px] font-medium text-gray-400">자격증 보유 여부</span>
-              <button
-                type="button"
-                onClick={() => set("has_license", form.has_license === "Y" ? "N" : "Y")}
-                className="flex items-center gap-2 outline-none group shrink-0"
-              >
-                <span className={`text-[14px] font-bold transition-colors w-8 text-right ${form.has_license === "Y" ? "text-brand" : "text-gray-400"}`}>
-                  {form.has_license === "Y" ? "보유" : "없음"}
-                </span>
-                <div className={`relative w-11 h-6 rounded-full transition-colors duration-300 shadow-inner ${form.has_license === "Y" ? "bg-brand" : "bg-gray-200 group-hover:bg-gray-300"}`}>
-                  <div className={`absolute top-1 left-1 bg-white w-4 h-4 rounded-full shadow transition-transform duration-300 ease-out ${form.has_license === "Y" ? "translate-x-5" : "translate-x-0"}`} />
-                </div>
-              </button>
             </div>
 
           </div>

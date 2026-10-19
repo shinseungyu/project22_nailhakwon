@@ -60,7 +60,7 @@ export default function PrivacyPolicyPage() {
           <strong>상담 신청 시 (이용자가 직접 입력)</strong>
         </p>
         <ul style={ulStyle}>
-          <li>필수: 이름, 생년월일, 휴대전화번호, 성별, 관심 지역, 자격증 보유 여부</li>
+          <li>필수: 이름, 생년월일, 휴대전화번호, 성별, 관심 지역</li>
         </ul>
         <p style={{ marginTop: '12px' }}>
           <strong>서비스 이용 과정에서 자동 수집</strong>
@@ -97,7 +97,7 @@ export default function PrivacyPolicyPage() {
             <strong>제공받는 자</strong> — 올댓뷰티 상담사
           </li>
           <li>
-            <strong>제공 항목</strong> — 이름, 생년월일, 휴대전화번호, 성별, 관심 지역, 자격증 보유 여부
+            <strong>제공 항목</strong> — 이름, 생년월일, 휴대전화번호, 성별, 관심 지역
           </li>
           <li>
             <strong>제공 목적</strong> — 수강 상담 및 과정·수강료 안내
